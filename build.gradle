@@ -1,0 +1,53 @@
+plugins {
+    id 'java'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+compileJava.options.encoding("UTF-8")
+compileTestJava.options.encoding = "UTF-8"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation group: 'org.testng', name: 'testng', version: '7.7.1'
+
+    implementation 'com.networknt:json-schema-validator:1.0.84'
+
+    compileOnly 'org.projectlombok:lombok:1.18.26'
+    annotationProcessor 'org.projectlombok:lombok:1.18.26'
+    testCompileOnly 'org.projectlombok:lombok:1.18.26'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.26'
+
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'
+}
+
+test {
+    useTestNG(){
+        scanForTestClasses = false
+        systemProperties = System.properties
+    }
+}
+
+task positiveTests(type: Test) {
+    useTestNG() {
+        suites "src/test/resources/testng-positive.xml"
+        includeGroups 'positive'
+        systemProperties = System.properties
+    }
+}
+
+task negativeTests(type: Test) {
+    useTestNG() {
+        suites "src/test/resources/testng-negative.xml"
+        includeGroups 'negative'
+        systemProperties = System.properties
+    }
+}

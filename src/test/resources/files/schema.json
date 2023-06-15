@@ -1,0 +1,161 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "type": "object",
+  "properties": {
+    "detectives": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "properties": {
+          "MainId": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "violinPlayer": {
+            "type": "boolean"
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "CategoryID": {
+                  "type": "integer",
+                  "enum": [
+                    1,
+                    2
+                  ]
+                },
+                "CategoryName": {
+                  "type": "string"
+                },
+                "extra": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "properties": {
+                    "extraArray": {
+                      "type": "array",
+                      "items": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "violin": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "violin"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "cap": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "cap"
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "extraArray"
+                  ]
+                }
+              },
+              "allOf": [
+                {
+                  "if": {
+                    "properties": {
+                      "CategoryID": {
+                        "const": 1
+                      }
+                    }
+                  },
+                  "then": {
+                    "properties": {
+                      "extra": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                },
+                {
+                  "if": {
+                    "properties": {
+                      "CategoryID": {
+                        "const": 1
+                      }
+                    }
+                  },
+                  "then": {
+                    "properties": {
+                      "extra": {
+                        "properties": {
+                          "extraArray": {
+                            "minItems": 1
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "required": [
+                "CategoryID",
+                "CategoryName",
+                "extra"
+              ]
+            }
+          }
+        },
+        "required": [
+          "MainId",
+          "firstName",
+          "lastName",
+          "violinPlayer",
+          "categories"
+        ]
+      }
+    },
+    "success": {
+      "type": "boolean"
+    }
+  },
+  "if": {
+    "properties": {
+      "detectives": {
+        "items": {
+          "properties": {
+            "firstName": "Sherlock"
+          }
+        }
+      }
+    }
+  },
+  "then": {
+    "properties": {
+      "success": {
+        "const": true
+      }
+    }
+  },
+  "required": [
+    "detectives",
+    "success"
+  ]
+}

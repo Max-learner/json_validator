@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Negative" verbose="1" preserve-order="true" parallel="false">
+    <test name="Negative tests" preserve-order="true">
+        <classes>
+            <class name="org.example.test.JsonFileTest">
+                <methods>
+                    <include name="readJsonFromFile" />
+                    <include name="checkNegativeDetectivesSizes" />
+                    <include name="checkNegativeMainId"/>
+                    <include name="checkNegativeCategoryId" />
+                    <include name="checkNegativeExtraNotNullCategoryId1"/>
+                    <include name="checkNegativeExtraArrayNotEmptyCategoryId1"/>
+                    <include name="checkNegativeSuccessValue"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
