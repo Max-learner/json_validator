@@ -59,7 +59,7 @@ CLI параметры имеют форму:
 
 ````batch  
 
-git clone git@git.epam.com:piotr_zhylitski/test-shop-team.git
+git clone https://github.com/Max-learner/json_validator.git
 
 ````
 
@@ -72,4 +72,4 @@ gradle clean positiveTests
 ````
 
 ## Author
--  [Maksim Plotnikov](https://git.epam.com/maksim_plotnikov) 
+-  [Maksim Plotnikov](https://github.com/Max-learner/json_validator.git) 
